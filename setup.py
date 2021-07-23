@@ -17,7 +17,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name="cbpy",
-    version="0.0.3",
+    version="0.0.1",
     author="Peng Tao",
     author_email="taopeng543@gmail.com",
     url='https://github.com/PengTao-HUST/CBP',

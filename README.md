@@ -58,7 +58,7 @@ sns.set(context='notebook', style='whitegrid', font_scale=1.2)
 
 cbp.plot_series(weight_list, ylabel='w', title='weight of BP')
 ```
-![bp_weight](figures/bp_weight.png)
+![bp_weight](https://github.com/PengTao-HUST/CBP/blob/master/figures/bp_weight.png?raw=true)
 
 ###### 5. training with CBP algorithm
 ```python
@@ -96,13 +96,13 @@ for i in range(1000):
 ```python
 cbp.plot_series(weight_list, ylabel='w', title='weight of CBP')
 ```
-![cbp_weight](figures/cbp_weight.png)
+![cbp_weight](https://github.com/PengTao-HUST/CBP/blob/master/figures/cbp_weight.png?raw=true)
 
 #### Example2. validate the global optimization ability of CBP on the XOR problem
 ###### 1. prepare the dataset and parameters
 ```python
 # create the XOR dataset
-trainloader = cbpy.create_xor_dataloader()
+trainloader = cbp.create_xor_dataloader()
 
 inp, tgt = next(iter(trainloader))
 print(inp, '\n', tgt)
@@ -140,9 +140,11 @@ bp_l_list, bp_a_list, bp_w_list, bp_o_list = cbp.train_with_chaos(
 
 ###### 3. plot the trajectories of the weights for BP (first 2000 epochs)
 ```python
-cbp.plot_xor_weight(bp_w_list[:2000], suptitle='BP')
+cbp.plot_xor_weight(bp_w_list[:2000])
 ```
-![xor_bp_weight](figures/bp_xor_weight_example.png)
+Weights of BP
+
+![xor_bp_weight](https://github.com/PengTao-HUST/CBP/blob/master/figures/bp_xor_weight_example.png?raw=true)
 
 ###### 4. training by BP from the same initial condition as CBP
 ```python
@@ -171,7 +173,9 @@ cbp_l_list, cbp_a_list, cbp_w_list, cbp_o_list = cbp.train_with_chaos(
 ```
 cbp.plot_xor_weight(cbp_w_list[:2000], suptitle='CBP')
 ```
-![xor_bp_weight](figures/cbp_xor_weight_example.png)
+Weights of CBP
+
+![xor_bp_weight](https://github.com/PengTao-HUST/CBP/blob/master/figures/cbp_xor_weight_example.png?raw=true)
 
 ###### 6. compare the loss and accuracy of BP and CBP
 ```python
@@ -181,7 +185,7 @@ loss_mat = np.array([bp_l_list, cbp_l_list]).T
 acc_mat = np.array([bp_a_list, cbp_a_list]).T
 cbp.plot_mul_loss_acc(loss_mat, acc_mat, alpha=1, ylabels=['loss', 'acc'])
 ```
-![compare_loss](figures/comp_bp_cbp_loss_acc.png)
+![compare_loss](https://github.com/PengTao-HUST/CBP/blob/master/figures/comp_bp_cbp_loss_acc.png?raw=true)
 
 #### Example3. choose the parameter z (initial chaotic intensity)
 ```python
@@ -192,13 +196,13 @@ ws_lists = cbp.debug_chaos(model, trainloader, loss_func=loss_func)
 le_list = cbp.cal_lyapunov_exponent(ws_lists)
 cbp.plot_lyapunov_exponent_with_z(le_list)
 ```
-![Lyapunov_exponent](figures/xor_w1_lyapunov_exponent_with_z.png)
+![Lyapunov_exponent](https://github.com/PengTao-HUST/CBP/blob/master/figures/xor_w1_lyapunov_exponent_with_z.png?raw=true)
 
 In this example, the Lyapunov exponent around interval [8, 11] is positive, which indicates chaotic dynamics.  
 Then, z = 12 was chosen as the initial chaotic intensity.
 
 ### Reproduce the results in the paper
-To reproduce the results in the paper, check the notebook files in paper_example.
+To reproduce the results in the paper, check the notebook files in [paper_example](https://github.com/PengTao-HUST/CBP/tree/master/paper_example).
 
 ### Components
 - chaos_optim.py: implement the CBP algorithm in the form of optimizer.
@@ -209,4 +213,4 @@ To reproduce the results in the paper, check the notebook files in paper_example
 - plot.py: several functions to show the training results.
 
 ### License
-MIT
+MIT License
