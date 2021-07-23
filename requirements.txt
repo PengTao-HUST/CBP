@@ -1,0 +1,10 @@
+nolds>=0.5
+statsmodels>=0.11
+pandas>=1.0
+torchvision>=0.9
+tqdm>=4.40
+seaborn>=0.10
+torch>=1.6
+pytest>=5.4
+matplotlib>=3.1
+numpy>=1.18
