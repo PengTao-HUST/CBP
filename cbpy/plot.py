@@ -126,7 +126,7 @@ def plot_loss(loss, save_prefix=None, suffix='train_loss', log_scale=False):
         plt.show()
 
 
-def plot_lyapunov_exponent_with_z(nolds_les, z=20, beta=0.99, max_iter=800,
+def plot_lyapunov_exponent_with_z(nolds_les, z=20, beta=0.99, max_iter=800, grid=False,
                                   save_prefix=None, suffix='lyapunov_exponent', **kws):
     n_points = len(nolds_les)
     assert n_points == max_iter
@@ -138,7 +138,8 @@ def plot_lyapunov_exponent_with_z(nolds_les, z=20, beta=0.99, max_iter=800,
     ax.axhline(y=0, c='red', ls='dashed', lw=2)
     ax.set_ylim(-1.5, 1.5)
     ax.set_xlim(0, z)
-    ax.grid()
+    if grid:
+        ax.grid()
     fig.tight_layout()
 
     if save_prefix is not None:
