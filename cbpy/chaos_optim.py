@@ -117,7 +117,7 @@ class SGD(Optimizer):
                 # the updating rule modified by CBP
                 cbp_grad = z * (I - X)
                 if clip:
-                    cbp_grad.clip_(-clip_value, clip_value)
+                    cbp_grad.clamp_(-clip_value, clip_value)
                 # p.add_(d_p, alpha=-group['lr']).add_(I - X, alpha=z)
                 p.add_(d_p, alpha=-group['lr']).add_(cbp_grad)
         return loss

@@ -40,6 +40,8 @@ def train_with_chaos(model,
                      bp_momentum=0,
                      bp_adam=False,
                      gpu=False,
+                     clip_cbp_grad=False,
+                     clip_cbp_value=0.01,
                      **kws
                      ):
     """ The main training function used in CBP.
@@ -68,6 +70,8 @@ def train_with_chaos(model,
     :param bp_momentum: the size of the momentum in BP
     :param bp_adam: whether use adam in BP
     :param gpu: use GPU
+    :param clip_cbp_grad: whether clip the gradient of loss_chaos
+    :param clip_cbp_value: the cutoff value for the gradient of loss_chaos
     :return:
         tl_list: loss list
         ta_list: accuray list
@@ -182,7 +186,8 @@ def train_with_chaos(model,
                 model, trainloader, optimizer, loss_func, zs=zs, best_loss=_best_loss,
                 record_weight=record_weight, record_first_output=record_first_output,
                 beta=beta, I0=I0, logdir=logdir, save_best_loss_model=save_best_loss_model,
-                flatten_input=flatten_input, whole_weight=whole_weight, device=device, **kws)
+                flatten_input=flatten_input, whole_weight=whole_weight, device=device, 
+                clip_cbp_grad=clip_cbp_grad, clip_cbp_value=clip_cbp_value, **kws)
             predicts, acc = evaluate(model, testloader, device=device, onehot=onehot, flatten_input=flatten_input)
             mean_loss = np.mean(train_loss)
             if mean_loss < best_loss:
