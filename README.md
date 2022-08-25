@@ -1,5 +1,5 @@
 ## Chaotic Back-propagation (CBP)
-cbpy is a light package for research purpose, which implements the CBP algorithm in the paper "Brain-inspired Chaotic Back-Propagation".
+cbpy is a light package for research purpose, which implements the CBP algorithm in the paper [Brain-inspired Chaotic Back-Propagation for MLP](https://www.sciencedirect.com/science/article/abs/pii/S0893608022003045) published in Neural Networks. You can download the full text on [ResearchGate](https://www.researchgate.net/publication/362618836_Brain-inspired_chaotic_backpropagation_for_MLP).
 
 ### Install
 ```bash
