@@ -190,7 +190,26 @@ def _titanic_dataset():
     except:
         urlretrieve(url, full_path)
         with tarfile.open(full_path) as t:
-            t.extractall(path=cache_dir)
+            def is_within_directory(directory, target):
+                
+                abs_directory = os.path.abspath(directory)
+                abs_target = os.path.abspath(target)
+            
+                prefix = os.path.commonprefix([abs_directory, abs_target])
+                
+                return prefix == abs_directory
+            
+            def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+            
+                for member in tar.getmembers():
+                    member_path = os.path.join(path, member.name)
+                    if not is_within_directory(path, member_path):
+                        raise Exception("Attempted Path Traversal in Tar File")
+            
+                tar.extractall(path, members, numeric_owner=numeric_owner) 
+                
+            
+            safe_extract(t, path=cache_dir)
         dset = pd.read_csv(data_path, header=None, sep='\s+').to_numpy()
     data = dset[:, :3]
     target = dset[:, 3].astype('int')
@@ -210,7 +229,26 @@ def _twonorm_dataset():
     except:
         urlretrieve(url, full_path)
         with tarfile.open(full_path) as t:
-            t.extractall(path=cache_dir)
+            def is_within_directory(directory, target):
+                
+                abs_directory = os.path.abspath(directory)
+                abs_target = os.path.abspath(target)
+            
+                prefix = os.path.commonprefix([abs_directory, abs_target])
+                
+                return prefix == abs_directory
+            
+            def safe_extract(tar, path=".", members=None, *, numeric_owner=False):
+            
+                for member in tar.getmembers():
+                    member_path = os.path.join(path, member.name)
+                    if not is_within_directory(path, member_path):
+                        raise Exception("Attempted Path Traversal in Tar File")
+            
+                tar.extractall(path, members, numeric_owner=numeric_owner) 
+                
+            
+            safe_extract(t, path=cache_dir)
         unzip_gz(data_path + '.gz')
         dset = pd.read_csv(data_path, header=None, sep='\s+').to_numpy()
     data = dset[:, :20]
